@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:constants="clr-namespace:PlanStreet.Constants;"
+    xmlns:behaviors="clr-namespace:PlanStreet.Behaviors"
+    xmlns:cells="clr-namespace:PlanStreet.Cells;"
+    x:Class="PlanStreet.Views.StatusPopup">
+    <pages:PopupPage.Content>
+        <Frame
+            CornerRadius="6"
+            BackgroundColor="White"
+            HeightRequest="228"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="CenterAndExpand"
+            Margin="20,0,20,0"
+            Padding="20">
+            <StackLayout
+                Orientation="Vertical">
+                <Label
+                    Text="Select Status"
+                    FontSize="Large"
+                    TextColor="Black" />
+                <ListView
+                    x:Name="StatusList"
+                    SelectedItem="{Binding SelectedStatus, Mode=TwoWay}"
+                    ItemsSource="{Binding Statuses}"
+                    HeightRequest="{Binding ListHeights}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Fill"
+                    SeparatorVisibility="None"
+                    RowHeight="{Binding ListRowHeights}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <cells:StatusCellItem />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            EventName="ItemSelected"
+                            Command="{Binding StatusSelectedCommand}"
+                            Converter="{StaticResource SelectedItemConverter}" />
+                    </ListView.Behaviors>
+                </ListView>
+                <StackLayout
+                    HorizontalOptions="EndAndExpand"
+                    Spacing="12"
+                    Orientation="Horizontal">
+
+                    <Label
+                        FontSize="17"
+                        Text="CANCEL"
+                        TextColor="{x:Static constants:AppThemeConstants.SelectedTabColor}"
+                        HorizontalOptions="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding CancelCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label
+                        Text="OK"
+                        FontSize="17"
+                        WidthRequest="34"
+                        TextColor="{x:Static constants:AppThemeConstants.SelectedTabColor}"
+                        HorizontalOptions="End">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding OkCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

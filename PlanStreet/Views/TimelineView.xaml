@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PlanStreet.Views.TimelineView"
+    xmlns:controls="clr-namespace:PlanStreet.Controls;"
+    xmlns:constants="clr-namespace:PlanStreet.Constants;"
+    xmlns:behaviors="clr-namespace:PlanStreet.Behaviors"
+    xmlns:cells="clr-namespace:PlanStreet.Cells;"
+    BackgroundColor="{x:Static constants:AppThemeConstants.BackgroundColor}">
+    <ContentView.Content>
+        <ScrollView
+            Orientation="Vertical">
+            <StackLayout
+                Spacing="0"
+                BackgroundColor="{x:Static constants:AppThemeConstants.BackgroundColor}"
+                x:Name="StackContainer">
+                <Frame
+                   HasShadow="false"
+                    BackgroundColor="White"
+                    CornerRadius="4"
+                    OutlineColor="{x:Static constants:AppThemeConstants.LightGrayColor}"
+                    Padding="0">
+                    <Label
+                        HeightRequest="35"
+                        BackgroundColor="{x:Static constants:AppThemeConstants.LightGrayColor}"
+                        HorizontalTextAlignment="Center"
+                        VerticalTextAlignment="Center"
+                        HorizontalOptions="FillAndExpand"
+                        Text="First Project Title" />
+                </Frame>
+                <ListView 
+                    x:Name="ProjectList"
+                    SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+                    ItemsSource="{Binding Projects}"
+                    HeightRequest="{Binding ListHeights}"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Fill"
+                    SeparatorVisibility="None"
+                    RowHeight="{Binding ListRowHeights}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <cells:ProjectItemCell />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior
+                            EventName="ItemSelected"
+                            Command="{Binding ProjectSelectedCommand}"
+                            Converter="{StaticResource SelectedItemConverter}" />
+                    </ListView.Behaviors>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

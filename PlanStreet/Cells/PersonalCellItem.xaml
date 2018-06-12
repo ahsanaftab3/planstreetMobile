@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constants="clr-namespace:PlanStreet.Constants;"
+    x:Class="PlanStreet.Cells.PersonalCellItem">
+    <ViewCell.View>
+        <Frame
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            CornerRadius="4"
+            OutlineColor="{x:Static constants:AppThemeConstants.LightGrayColor}"
+            Margin="10,10,10,10"
+            BackgroundColor="White"
+            HasShadow="false"
+            Padding="0,0,10,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="10" />
+                    <ColumnDefinition
+                        Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="25" />
+                    <RowDefinition
+                        Height="*" />
+                </Grid.RowDefinitions>
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    WidthRequest="4"
+                    HorizontalOptions="Start"
+                    BackgroundColor="{x:Static constants:AppThemeConstants.StatusCompletedColor}" />
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Padding="0,6,0,0"
+                    Orientation="Horizontal">
+                    <Label
+                        Text="ToDoTask 1"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center" />
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="3"
+                        HorizontalOptions="End"
+                        Aspect="AspectFit"
+                        WidthRequest="20"
+                        Source="ic_menu.png" />
+                    <Label
+                        Text="12" />
+                </StackLayout>
+                <Label
+                    Margin="0,0,0,6"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="Small"
+                    TextColor="Silver"
+                    Text="lorem ipsom doller sit emut sun orem ipsum doller sit emur sun" />
+            </Grid>
+        </Frame>
+    </ViewCell.View>
+</ViewCell>

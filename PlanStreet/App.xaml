@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:PlanStreet.Converter"
+    x:Class="PlanStreet.App">
+    <Application.Resources>
+         <converter:SelectedItemEventArgsToSelectedItemConverter
+                x:Key="SelectedItemConverter" />
+        <ResourceDictionary>
+            <Style
+                x:Key="LabelStyle"
+                TargetType="Label">
+                <!--<Setter
+                    Property="Margin"
+                    Value="8,0" />-->
+                <Setter
+                    Property="TextColor"
+                    Value="Black" />
+                <Setter
+                    Property="FontSize"
+                    Value="Medium" />
+                <Setter
+                    Property="VerticalOptions"
+                    Value="Center" />
+            </Style>
+             <Style
+                x:Key="FrameStyle"
+                TargetType="Frame">
+                <Setter
+                    Property="Padding"
+                    Value="0" />
+                <!--<Setter
+                    Property="HeightRequest"
+                    Value="50" />-->
+                <Setter
+                    Property="CornerRadius"
+                    Value="4" />
+                <Setter
+                    Property="HasShadow"
+                    Value="false" />
+                <Setter
+                    Property="BackgroundColor"
+                    Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

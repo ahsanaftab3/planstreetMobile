@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:PlanStreet.Controls"
+    xmlns:constants="clr-namespace:PlanStreet.Constants;"
+    xmlns:views="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading"
+    x:Class="PlanStreet.Views.CreateProjectView"
+    BackgroundColor="{x:Static constants:AppThemeConstants.BackgroundColor}"
+    Title="Create Details">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="{x:Static constants:AppThemeConstants.BackgroundColor}">
+            <ScrollView
+                Grid.Row="0"
+                Grid.Column="0">
+                <StackLayout
+                    Margin="10,10"
+                    Spacing="10"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <Frame
+                        HeightRequest="50"
+                        Style="{StaticResource FrameStyle}">
+                        <controls:CustomEntry
+                            Placeholder="Task Title"
+                            Margin="8,0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <Frame
+                        HeightRequest="50"
+                        Style="{StaticResource FrameStyle}">
+                        <controls:CustomEntry
+                            Placeholder="Add Notes"
+                            Margin="8,0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <Frame
+                        Padding="0"
+                        CornerRadius="4"
+                        HasShadow="false"
+                        BackgroundColor="White">
+                        <Grid
+                            Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="*" />
+                                <RowDefinition
+                                    Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="50" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Margin="0"
+                                Style="{StaticResource LabelStyle}"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Text="Assigness" />
+                            <Image
+                                WidthRequest="25"
+                                HeightRequest="25"
+                                Margin="0,0,10,0"
+                                HorizontalOptions="End"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Source="ic_folder.png" />
+                            <StackLayout
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal">
+                                <ffimageloading:CachedImage
+                                    WidthRequest="25"
+                                    HeightRequest="25"
+                                    x:Name="ImgProfile1"
+                                    Source="ic_folder.png" />
+                                <ffimageloading:CachedImage
+                                    WidthRequest="25"
+                                    HeightRequest="25"
+                                    x:Name="ImgProfile2"
+                                    Source="ic_folder.png" />
+                                <ffimageloading:CachedImage
+                                    WidthRequest="25"
+                                    HeightRequest="25"
+                                    x:Name="ImgProfile3"
+                                    Source="ic_folder.png" />
+                            </StackLayout>
+                            <Label
+                                Margin="0,0,10,0"
+                                HorizontalOptions="End"
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="View"
+                                TextColor="Black" />
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        HeightRequest="50"
+                        Style="{StaticResource FrameStyle}">
+                        <StackLayout
+                            Spacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Margin="8,0"
+                                Text="Due Date"
+                                Style="{StaticResource LabelStyle}" />
+                            <Label
+                                x:Name="LblDate"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="End"
+                                HorizontalOptions="EndAndExpand"
+                                Text="Sep 9, 2017" />
+                            <ffimageloading:CachedImage
+                                HorizontalOptions="End"
+                                Margin="7,0,10,0"
+                                WidthRequest="25"
+                                HeightRequest="25"
+                                x:Name="DatePicker"
+                                Source="ic_folder.png">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="DatePicker_Tapped" />
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <DatePicker
+                                x:Name="datePicker"
+                                Unfocused="DatePicker_Unfocused"
+                                IsVisible="false" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        HeightRequest="50"
+                        Style="{StaticResource FrameStyle}">
+                        <StackLayout
+                            Spacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Text="Priority"
+                                Margin="8,0"
+                                Style="{StaticResource LabelStyle}" />
+                            <Grid
+                                x:Name="PriorityGrid"
+                                VerticalOptions="Center"
+                                Margin="0,5,10,5"
+                                HorizontalOptions="EndAndExpand">
+                                <views:SKCanvasView
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    BackgroundColor="Transparent"
+                                    VerticalOptions="Center"
+                                    EnableTouchEvents="True"
+                                    x:Name="CanvasView" />
+                                <Label
+                                    x:Name="LblProority"
+                                    TextColor="{Binding PriorityColor}"
+                                    Margin="15,0"
+                                    VerticalOptions="Center"
+                                    HorizontalTextAlignment="Center"
+                                    HorizontalOptions="EndAndExpand"
+                                    Text="{Binding PriorityName}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding UpdatePriorityCommand}" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Padding="0"
+                        HeightRequest="50"
+                        CornerRadius="4"
+                        HasShadow="false"
+                        BackgroundColor="White">
+                    </Frame>
+                    <Frame
+                        HeightRequest="50"
+                        Style="{StaticResource FrameStyle}">
+                        <StackLayout
+                            Spacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Margin="8,0"
+                                Text="Select Project"
+                                HorizontalOptions="FillAndExpand"
+                                Style="{StaticResource LabelStyle}" />
+                            <ffimageloading:CachedImage
+                                HorizontalOptions="End"
+                                Margin="7,0,10,0"
+                                WidthRequest="25"
+                                HeightRequest="25"
+                                Aspect="AspectFit"
+                                Source="ic_dropdown_arrow.png">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="SelectProject_Tapped" />
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <Picker
+                                x:Name="ProjectsPicker"
+                                IsVisible="false"
+                                Unfocused="ProjectPicker_Unfocused" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        HeightRequest="50"
+                        Style="{StaticResource FrameStyle}">
+                        <StackLayout
+                            Spacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Margin="8,0"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Color Label"
+                                Style="{StaticResource LabelStyle}" />
+                            <Frame
+                                HasShadow="false"
+                                BackgroundColor="Red"
+                                HorizontalOptions="End"
+                                Margin="7,0,10,0"
+                                Padding="0"
+                                CornerRadius="3"
+                                WidthRequest="25"
+                                HeightRequest="25" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        HeightRequest="50"
+                        Style="{StaticResource FrameStyle}">
+                        <StackLayout
+                            Spacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                HorizontalOptions="FillAndExpand"
+                                Text="Status"
+                                Margin="8,0"
+                                Style="{StaticResource LabelStyle}" />
+                            <controls:CustomLabel
+                                VerticalOptions="Center"
+                                TextColor="White"
+                                WidthRequest="110"
+                                FontSize="Small"
+                                CornerRadius="4"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding StatusName}"
+                                CurvedBackgroundColor="{Binding StatusColor}"
+                                HorizontalOptions="End"
+                                HeightRequest="25"
+                                VerticalTextAlignment="Center"
+                                Margin="7,0,10,0">
+                                <controls:CustomLabel.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding UpdateStatusCommand}" />
+                                </controls:CustomLabel.GestureRecognizers>
+                            </controls:CustomLabel>
+                        </StackLayout>
+                    </Frame>
+                    <!--                    Time Picker-->
+                    <Frame
+                        HeightRequest="50"
+                        Style="{StaticResource FrameStyle}">
+                        <StackLayout
+                            Spacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Margin="8,0"
+                                Text="Time Entry"
+                                Style="{StaticResource LabelStyle}" />
+                            <Label
+                                x:Name="LblTime"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="End"
+                                HorizontalOptions="EndAndExpand"
+                                Text="00 hrs : 00 min" />
+                            <ffimageloading:CachedImage
+                                HorizontalOptions="End"
+                                Margin="7,0,10,0"
+                                WidthRequest="25"
+                                HeightRequest="25"
+                                Source="ic_folder.png">
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="TimePicker_Tapped" />
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                            <TimePicker
+                                x:Name="timePicker"
+                                Unfocused="TimePicker_Unfocused"
+                                IsVisible="false" />
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        HeightRequest="50"
+                        Style="{StaticResource FrameStyle}">
+                        <StackLayout
+                            Spacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Orientation="Horizontal">
+                            <Label
+                                Margin="8,0"
+                                Text="Repeat Task"
+                                Style="{StaticResource LabelStyle}" />
+                            <Label
+                                x:Name="LblRepeat"
+                                VerticalOptions="Center"
+                                HorizontalTextAlignment="End"
+                                HorizontalOptions="EndAndExpand"
+                                Text="Daily" />
+                            <ffimageloading:CachedImage
+                                HorizontalOptions="End"
+                                Margin="7,0,10,0"
+                                WidthRequest="25"
+                                HeightRequest="25"
+                                Source="ic_folder.png">
+                                <!--<ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Tapped="TimePicker_Tapped" />
+                                </ffimageloading:CachedImage.GestureRecognizers> -->
+                            </ffimageloading:CachedImage>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

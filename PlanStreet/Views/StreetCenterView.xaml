@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:PlanStreet.Controls;"
+    xmlns:constants="clr-namespace:PlanStreet.Constants;"
+    xmlns:behaviors="clr-namespace:PlanStreet.Behaviors"
+    xmlns:cells="clr-namespace:PlanStreet.Cells;"
+    x:Class="PlanStreet.Views.StreetCenterView"
+    Title="Street Center">
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="{x:Static constants:AppThemeConstants.BackgroundColor}">
+            <ScrollView
+                Grid.Row="0"
+                Grid.Column="0">
+                <StackLayout
+                    Margin="10,10"
+                    Spacing="10"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+                    <Frame
+                        Style="{StaticResource FrameStyle}">
+                        <Grid
+                            ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="1" />
+                                <ColumnDefinition
+                                    Width="*" />
+                                <ColumnDefinition
+                                    Width="1" />
+                                <ColumnDefinition
+                                    Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout
+                                Orientation="Horizontal"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="15"
+                                    HeightRequest="15"
+                                    Aspect="AspectFit">
+                                    <Image.Triggers>
+                                        <DataTrigger
+                                            TargetType="Image"
+                                            Binding="{Binding IsStreetCenterSelected}"
+                                            Value="true">
+                                            <Setter
+                                                Property="Source"
+                                                Value="ic_clock_white.png" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            TargetType="Image"
+                                            Binding="{Binding IsStreetCenterSelected}"
+                                            Value="false">
+                                            <Setter
+                                                Property="Source"
+                                                Value="ic_clock_black.png" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                                <Label
+                                    VerticalOptions="Center"
+                                    Text="Street Center"
+                                    x:Name="LblStreetCenterTab"
+                                    HorizontalOptions="Center"
+                                    HorizontalTextAlignment="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            TargetType="Label"
+                                            Binding="{Binding IsStreetCenterSelected}"
+                                            Value="true">
+                                            <Setter
+                                                Property="TextColor"
+                                                Value="White" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            TargetType="Label"
+                                            Binding="{Binding IsStreetCenterSelected}"
+                                            Value="false">
+                                            <Setter
+                                                Property="TextColor"
+                                                Value="Black" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <StackLayout.Triggers>
+                                    <DataTrigger
+                                        TargetType="StackLayout"
+                                        Binding="{Binding IsStreetCenterSelected}"
+                                        Value="true">
+                                        <Setter
+                                            Property="BackgroundColor"
+                                            Value="{x:Static constants:AppThemeConstants.StatusCompletedColor}" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        TargetType="StackLayout"
+                                        Binding="{Binding IsStreetCenterSelected}"
+                                        Value="false">
+                                        <Setter
+                                            Property="BackgroundColor"
+                                            Value="White" />
+                                    </DataTrigger>
+                                </StackLayout.Triggers>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding StreetCenterCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <BoxView
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                WidthRequest="1"
+                                BackgroundColor="{x:Static constants:AppThemeConstants.LightGrayColor}" />
+                            <StackLayout
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Orientation="Horizontal"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="15"
+                                    HeightRequest="15"
+                                    Aspect="AspectFit">
+                                    <Image.Triggers>
+                                        <DataTrigger
+                                            TargetType="Image"
+                                            Binding="{Binding IsSchedulerSelected}"
+                                            Value="true">
+                                            <Setter
+                                                Property="Source"
+                                                Value="ic_calander_white.png" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            TargetType="Image"
+                                            Binding="{Binding IsSchedulerSelected}"
+                                            Value="false">
+                                            <Setter
+                                                Property="Source"
+                                                Value="ic_calander_black.png" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                                <Label
+                                    VerticalOptions="Center"
+                                    Text="Scheduler"
+                                    x:Name="LblScheduler"
+                                    HorizontalOptions="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            TargetType="Label"
+                                            Binding="{Binding IsSchedulerSelected}"
+                                            Value="true">
+                                            <Setter
+                                                Property="TextColor"
+                                                Value="White" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            TargetType="Label"
+                                            Binding="{Binding IsSchedulerSelected}"
+                                            Value="false">
+                                            <Setter
+                                                Property="TextColor"
+                                                Value="Black" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <StackLayout.Triggers>
+                                    <DataTrigger
+                                        TargetType="StackLayout"
+                                        Binding="{Binding IsSchedulerSelected}"
+                                        Value="true">
+                                        <Setter
+                                            Property="BackgroundColor"
+                                            Value="{x:Static constants:AppThemeConstants.StatusCompletedColor}" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        TargetType="StackLayout"
+                                        Binding="{Binding IsSchedulerSelected}"
+                                        Value="false">
+                                        <Setter
+                                            Property="BackgroundColor"
+                                            Value="White" />
+                                    </DataTrigger>
+                                </StackLayout.Triggers>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding SchedulerCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                            <BoxView
+                                Grid.Row="0"
+                                Grid.Column="3"
+                                WidthRequest="1"
+                                BackgroundColor="{x:Static constants:AppThemeConstants.LightGrayColor}" />
+                            <StackLayout
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                Orientation="Horizontal"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <Image
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="15"
+                                    HeightRequest="15"
+                                    Aspect="AspectFit">
+                                    <Image.Triggers>
+                                        <DataTrigger
+                                            TargetType="Image"
+                                            Binding="{Binding IsActivitySelected}"
+                                            Value="true">
+                                            <Setter
+                                                Property="Source"
+                                                Value="ic_eye_white.png" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            TargetType="Image"
+                                            Binding="{Binding IsActivitySelected}"
+                                            Value="false">
+                                            <Setter
+                                                Property="Source"
+                                                Value="ic_eye_black.png" />
+                                        </DataTrigger>
+                                    </Image.Triggers>
+                                </Image>
+                                <Label
+                                    VerticalOptions="Center"
+                                    x:Name="LblActivity"
+                                    Text="Activity"
+                                    HorizontalOptions="Center">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            TargetType="Label"
+                                            Binding="{Binding IsActivitySelected}"
+                                            Value="true">
+                                            <Setter
+                                                Property="TextColor"
+                                                Value="White" />
+                                        </DataTrigger>
+                                        <DataTrigger
+                                            TargetType="Label"
+                                            Binding="{Binding IsActivitySelected}"
+                                            Value="false">
+                                            <Setter
+                                                Property="TextColor"
+                                                Value="Black" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <StackLayout.Triggers>
+                                    <DataTrigger
+                                        TargetType="StackLayout"
+                                        Binding="{Binding IsActivitySelected}"
+                                        Value="true">
+                                        <Setter
+                                            Property="BackgroundColor"
+                                            Value="{x:Static constants:AppThemeConstants.StatusCompletedColor}" />
+                                    </DataTrigger>
+                                    <DataTrigger
+                                        TargetType="StackLayout"
+                                        Binding="{Binding IsActivitySelected}"
+                                        Value="false">
+                                        <Setter
+                                            Property="BackgroundColor"
+                                            Value="White" />
+                                    </DataTrigger>
+                                </StackLayout.Triggers>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding ActivityCommand}" />
+                                </StackLayout.GestureRecognizers>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                    <Frame
+                        VerticalOptions="Fill"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="0,0,0,10"
+                        CornerRadius="4"
+                        HasShadow="false"
+                        BackgroundColor="White">
+                        <StackLayout
+                            VerticalOptions="Fill"
+                            x:Name="TaskCenterStackLayout"
+                            Spacing="8"
+                            BackgroundColor="Transparent"
+                            Orientation="Vertical">
+                            <StackLayout
+                                Padding="10,0"
+                                HorizontalOptions="FillAndExpand"
+                                HeightRequest="50"
+                                BackgroundColor="{x:Static constants:AppThemeConstants.StatusCompletedColor}"
+                                Orientation="Horizontal">
+                                <Image
+                                    VerticalOptions="Center"
+                                    Source="ic_checkList.png"
+                                    WidthRequest="25"
+                                    HeightRequest="25"
+                                    Aspect="AspectFit" />
+                                <Label
+                                    Text="TaskCenter"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    TextColor="White" />
+                            </StackLayout>
+                            <ListView
+                                x:Name="TodoLists"
+                                SelectedItem="{Binding SelectedToDos, Mode=TwoWay}"
+                                ItemsSource="{Binding ToDoTasks}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Fill"
+                                SeparatorVisibility="None"
+                                RowHeight="{Binding ListRowHeights}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <cells:ToDoCellItem />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                        EventName="ItemSelected"
+                                        Command="{Binding ProjectSelectedCommand}"
+                                        Converter="{StaticResource SelectedItemConverter}" />
+                                </ListView.Behaviors>
+                            </ListView>
+                            <ListView
+                                x:Name="InProgressLists"
+                                SelectedItem="{Binding SelectedInProgressTask, Mode=TwoWay}"
+                                ItemsSource="{Binding InProgressTasks}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Fill"
+                                SeparatorVisibility="None"
+                                RowHeight="40">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <cells:ToDoCellItem />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                        EventName="ItemSelected"
+                                        Command="{Binding ProjectSelectedCommand}"
+                                        Converter="{StaticResource SelectedItemConverter}" />
+                                </ListView.Behaviors>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        VerticalOptions="Fill"
+                        HorizontalOptions="FillAndExpand"
+                        Padding="0,0,0,10"
+                        CornerRadius="4"
+                        HasShadow="false"
+                        BackgroundColor="White">
+                        <StackLayout
+                            x:Name="StreetBoardStack"
+                            VerticalOptions="Fill"
+                            Orientation="Vertical">
+                            <StackLayout
+                                Padding="10,0"
+                                HorizontalOptions="FillAndExpand"
+                                HeightRequest="50"
+                                BackgroundColor="{x:Static constants:AppThemeConstants.StatusCompletedColor}"
+                                Orientation="Horizontal">
+                                <Image
+                                    VerticalOptions="Center"
+                                    Source="ic_checkList.png"
+                                    WidthRequest="25"
+                                    HeightRequest="25"
+                                    Aspect="AspectFit" />
+                                <Label
+                                    Text="Street Board"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    TextColor="White" />
+                            </StackLayout>
+                            <ListView
+                                x:Name="PersonalList"
+                                SelectedItem="{Binding SelectedPersonalItem, Mode=TwoWay}"
+                                ItemsSource="{Binding PersonalList}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Fill"
+                                SeparatorVisibility="None"
+                                RowHeight="{Binding PersonalListRowHeights}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <cells:PersonalCellItem />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.Behaviors>
+                                    <behaviors:EventToCommandBehavior
+                                        EventName="ItemSelected"
+                                        Command="{Binding ProjectSelectedCommand}"
+                                        Converter="{StaticResource SelectedItemConverter}" />
+                                </ListView.Behaviors>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <Image
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Source="add_project.png"
+                WidthRequest="70"
+                HeightRequest="70"
+                Margin="0,0,10,10">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding AddTaskCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Frame
+                HeightRequest="100"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                WidthRequest="110"
+                Padding="10,5"
+                CornerRadius="4"
+                Margin="0,0,20,90"
+                HasShadow="false"
+                IsVisible="{Binding IsVisibleTaskView}"
+                OutlineColor="{x:Static constants:AppThemeConstants.LightGrayColor}">
+                <StackLayout
+                    Orientation="Vertical">
+                    <Label
+                        Text="Add new Task"
+                        HorizontalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        VerticalOptions="FillAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding AddNewTaskCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <BoxView
+                        HeightRequest="1"
+                        BackgroundColor="{x:Static constants:AppThemeConstants.LightGrayColor}"
+                        HorizontalOptions="FillAndExpand" />
+                    <Label
+                        Text="Add new Frame"
+                        HorizontalOptions="Center"
+                        VerticalTextAlignment="Center"
+                        VerticalOptions="FillAndExpand">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding AddNewFrameCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

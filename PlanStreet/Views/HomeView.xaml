@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constants="clr-namespace:PlanStreet.Constants;"
+    xmlns:controls="clr-namespace:PlanStreet.Controls;"
+    xmlns:skiasharp="clr-namespace:SkiaSharp.Views.Forms;assembly:SkiaSharp.Views.Forms;"
+    BackgroundColor="{x:Static constants:AppThemeConstants.BackgroundColor}"
+    x:Class="PlanStreet.Views.HomeView">
+    <ContentView.Content>
+        <ScrollView
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <StackLayout
+                BackgroundColor="{x:Static constants:AppThemeConstants.BackgroundColor}"
+                Padding="10"
+                Spacing="10"
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+                <Frame
+                    Style="{StaticResource FrameStyle}"
+                    Padding="10,15">
+                    <StackLayout
+                        x:Name="TaskCountContainer"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        Orientation="Horizontal">
+                        <Label
+                            FontAttributes="Bold"
+                            Text="Total Number of Tasks"
+                            HorizontalOptions="FillAndExpand"
+                            Style="{StaticResource LabelStyle}" />
+                        <Grid
+                            x:Name="TaskCountGrid"
+                            Padding="5,3"
+                            BackgroundColor="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                TextColor="{x:Static constants:AppThemeConstants.LightPurpleColor}"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center"
+                                Text="44"
+                                FontSize="{x:Static constants:AppThemeConstants.TitleFontSize}" />
+                        </Grid>
+                    </StackLayout>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding TaskStatusCommand}" />
+                    </Frame.GestureRecognizers>
+                </Frame>
+                <!-- Task Status frame start -->
+                <Frame
+                    Padding="10"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Start"
+                    Style="{StaticResource FrameStyle}">
+                    <Grid
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Start"
+                        RowSpacing="5"
+                        ColumnSpacing="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            FontAttributes="Bold"
+                            Text="Task by Status"
+                            HorizontalOptions="FillAndExpand"
+                            Style="{StaticResource LabelStyle}" />
+                        <!-- Not Started Frame Started -->
+                        <Frame
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Padding="8,12"
+                            HasShadow="false"
+                            BackgroundColor="{x:Static constants:AppThemeConstants.StatusNotStartedColor}"
+                            CornerRadius="4">
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="CenterAndExpand"
+                                Spacing="2">
+                                <Label
+                                    Text="16"
+                                    FontSize="42"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    TextColor="{x:Static constants:AppThemeConstants.TransparentWhiteColor}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    FontSize="Medium"
+                                    TextColor="White"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Not Started" />
+                            </StackLayout>
+                        </Frame>
+                        <!-- Not Started Frame Over -->
+                        <!-- In Progress Frame Started -->
+                        <Frame
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Padding="8,12"
+                            HasShadow="false"
+                            BackgroundColor="{x:Static constants:AppThemeConstants.StatusInProcessColor}"
+                            CornerRadius="4">
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"
+                                Spacing="2">
+                                <Label
+                                    Text="4"
+                                    FontSize="42"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    TextColor="{x:Static constants:AppThemeConstants.TransparentWhiteColor}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    FontSize="Medium"
+                                    TextColor="White"
+                                    HorizontalTextAlignment="Center"
+                                    Text="In Progress" />
+                            </StackLayout>
+                        </Frame>
+                        <!-- In Progress Frame Over -->
+                        <!--  In Review Frame Started -->
+                        <Frame
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Padding="8,12"
+                            HasShadow="false"
+                            BackgroundColor="{x:Static constants:AppThemeConstants.StatusInReviewColor}"
+                            CornerRadius="4">
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"
+                                Spacing="2">
+                                <Label
+                                    Text="12"
+                                    FontSize="42"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    TextColor="{x:Static constants:AppThemeConstants.TransparentWhiteColor}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    FontSize="Medium"
+                                    TextColor="White"
+                                    HorizontalTextAlignment="Center"
+                                    Text="In Review" />
+                            </StackLayout>
+                        </Frame>
+                        <!--  In Review Frame Started -->
+                        <!-- Completed Frame Started -->
+                        <Frame
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Padding="8,12"
+                            HasShadow="false"
+                            BackgroundColor="{x:Static constants:AppThemeConstants.StatusCompletedColor}"
+                            CornerRadius="4">
+                            <StackLayout
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Center"
+                                Spacing="2">
+                                <Label
+                                    Text="12"
+                                    FontSize="42"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    TextColor="{x:Static constants:AppThemeConstants.TransparentWhiteColor}" />
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
+                                    FontSize="Medium"
+                                    TextColor="White"
+                                    HorizontalTextAlignment="Center"
+                                    Text="Completed" />
+                            </StackLayout>
+                        </Frame>
+                        <!-- Completed Frame Over -->
+                    </Grid>
+                </Frame>
+                <!-- Task Status frame over -->
+                <!-- Task Priority frame start -->
+                <Frame
+                    Padding="10"
+                    VerticalOptions="Start"
+                    Style="{StaticResource FrameStyle}">
+                    <Grid
+                        ColumnSpacing="0"
+                        RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="15" />
+                            <RowDefinition
+                                Height="15" />
+                            <RowDefinition
+                                Height="15" />
+                            <RowDefinition
+                                Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            FontAttributes="Bold"
+                            Text="Task by Priority"
+                            HorizontalOptions="FillAndExpand"
+                            Style="{StaticResource LabelStyle}" />
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+                            <Frame
+                                Padding="0"
+                                BackgroundColor="{x:Static constants:AppThemeConstants.LowPriorityColor}"
+                                OutlineColor="{x:Static constants:AppThemeConstants.LowPriorityColor}"
+                                HasShadow="false"
+                                CornerRadius="3"
+                                HeightRequest="12"
+                                WidthRequest="100" />
+                            <Label
+                                VerticalOptions="Center"
+                                Text="12 Tasks"
+                                TextColor="{x:Static constants:AppThemeConstants.LowPriorityColor}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+                            <Frame
+                                CornerRadius="3"
+                                Padding="0"
+                                OutlineColor="{x:Static constants:AppThemeConstants.MediumPriorityColor}"
+                                BackgroundColor="{x:Static constants:AppThemeConstants.MediumPriorityColor}"
+                                HasShadow="false"
+                                HeightRequest="12"
+                                WidthRequest="140" />
+                            <Label
+                                VerticalOptions="Center"
+                                Text="12 Tasks"
+                                TextColor="{x:Static constants:AppThemeConstants.MediumPriorityColor}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+                            <Frame
+                                CornerRadius="3"
+                                Padding="0"
+                                OutlineColor="{x:Static constants:AppThemeConstants.HighPriorityColor}"
+                                BackgroundColor="{x:Static constants:AppThemeConstants.HighPriorityColor}"
+                                HasShadow="false"
+                                HeightRequest="12"
+                                WidthRequest="80" />
+                            <Label
+                                VerticalOptions="Center"
+                                Text="12 Tasks"
+                                TextColor="{x:Static constants:AppThemeConstants.HighPriorityColor}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Margin="0,20,0,10"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+                            <controls:CustomLabel
+                                CornerRadius="3"
+                                CurvedBackgroundColor="{x:Static constants:AppThemeConstants.LowPriorityColor}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                HeightRequest="12"
+                                WidthRequest="12" />
+                            <Label
+                                VerticalOptions="Center"
+                                Text="Low Priority"
+                                FontSize="11"
+                                TextColor="{x:Static constants:AppThemeConstants.LowPriorityColor}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Margin="0,20,0,10"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+                            <controls:CustomLabel
+                                CornerRadius="3"
+                                CurvedBackgroundColor="{x:Static constants:AppThemeConstants.MediumPriorityColor}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                HeightRequest="12"
+                                WidthRequest="12" />
+                            <Label
+                                VerticalOptions="Center"
+                                Text="Medium Priority"
+                                FontSize="11"
+                                TextColor="{x:Static constants:AppThemeConstants.MediumPriorityColor}" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="2"
+                            Margin="0,20,0,10"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal">
+                            <controls:CustomLabel
+                                CornerRadius="3"
+                                CurvedBackgroundColor="{x:Static constants:AppThemeConstants.HighPriorityColor}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                HeightRequest="12"
+                                WidthRequest="12" />
+                            <Label
+                                VerticalOptions="Center"
+                                Text="High Priority"
+                                FontSize="11"
+                                TextColor="{x:Static constants:AppThemeConstants.HighPriorityColor}" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+                <!-- Task Priority frame over -->
+                <!-- Due Task Info frame start -->
+                <Frame
+                    Padding="10,10,10,15"                   
+                    VerticalOptions="Fill"
+                    Style="{StaticResource FrameStyle}">
+                    <Grid
+                        x:Name="DueGrid"
+                        ColumnSpacing="10"
+                        RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="Auto" />
+                            <RowDefinition
+                                Height="100" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                            <ColumnDefinition
+                                Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            FontAttributes="Bold"
+                            Text="Task by Due Date"
+                            HorizontalOptions="FillAndExpand"
+                            Style="{StaticResource LabelStyle}" />                        
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Margin="1"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            VerticalOptions="Center">
+                            <Label
+                                VerticalTextAlignment="End"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Text="14"
+                                TextColor="#55000000" />
+                            <Label
+                                VerticalTextAlignment="Start"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                Text="Due Today" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="1"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            VerticalOptions="Center">
+                            <Label
+                                VerticalTextAlignment="End"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Text="14"
+                                TextColor="#55000000" />
+                            <Label
+                                VerticalTextAlignment="Start"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                Text="Due this Week" />
+                        </StackLayout>
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Vertical"
+                            VerticalOptions="Center">
+                            <Label
+                                VerticalTextAlignment="End"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                Text="14"
+                                TextColor="#55000000" />
+                            <Label
+                                VerticalTextAlignment="Start"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                Text="Over Due" />
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+                <!-- Due Task info frame over -->
+            </StackLayout>
+        </ScrollView>
+    </ContentView.Content>
+</ContentView>

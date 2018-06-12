@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constants="clr-namespace:PlanStreet.Constants;"
+    xmlns:controls="clr-namespace:PlanStreet.Controls;"
+    xmlns:enums="clr-namespace:PlanStreet.Enums"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading"
+    x:Class="PlanStreet.Cells.ProjectStatusItemCell">
+    <ViewCell.View>
+        <Frame
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            CornerRadius="4"
+            OutlineColor="{x:Static constants:AppThemeConstants.LightGrayColor}"
+            Margin="10,8,10,6"
+            BackgroundColor="White"
+            HasShadow="false"
+            Padding="10,8,10,2">
+            <StackLayout
+                Orientation="Vertical"
+                Spacing="3"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal">
+                    <Label
+                        HorizontalOptions="FillAndExpand"
+                        Text="{Binding Title}"
+                        FontSize="Medium" />
+                    <ffimageloading:CachedImage
+                        WidthRequest="30"
+                        HeightRequest="30"
+                        HorizontalOptions="End"
+                        x:Name="ImgProfile1"
+                        Source="{Binding Profile}" />
+                </StackLayout>
+                <Label
+                    FontSize="12"
+                    Text="{Binding Description}" />
+                <StackLayout
+                    
+                    Orientation="Horizontal">
+                    <controls:CustomLabel
+                        x:Name="LblStatus"
+                        Text="Ready"
+                        TextColor="White"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Start"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        CornerRadius="3"
+                        WidthRequest="80"
+                        HeightRequest="25">
+                        <controls:CustomLabel.Triggers>
+                            <DataTrigger TargetType="controls:CustomLabel"
+                                         Binding="{Binding Status}" Value="{x:Static enums:ProjectStatus.Ready}">
+                                <Setter Property="CurvedBackgroundColor" Value="Red"/>
+                                <Setter Property="Text" Value="Ready"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="controls:CustomLabel"
+                                         Binding="{Binding Status}" Value="{x:Static enums:ProjectStatus.InProgress}">
+                                <Setter Property="CurvedBackgroundColor" Value="{x:Static constants:AppThemeConstants.StatusInProcessColor}"/>
+                                <Setter Property="Text" Value="In Progress"/>
+                            </DataTrigger>
+                        </controls:CustomLabel.Triggers>
+                    </controls:CustomLabel>
+                    <BoxView
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="Transparent" />
+                    <ffimageloading:CachedImage
+                         />
+                    <Label
+                        Margin="5,0"
+                        Text="{Binding Days}"
+                        FontSize="Micro" />
+                    <ffimageloading:CachedImage
+                         />
+                    <Label
+                        Margin="5,0"
+                        Text="{Binding AttachmentCount}"
+                        FontSize="Micro" />
+                    <ffimageloading:CachedImage
+                         />
+                    <Label
+                        Margin="5,0"
+                        Text="{Binding TotalDays}"
+                        FontSize="Micro" />
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ViewCell.View>
+</ViewCell>

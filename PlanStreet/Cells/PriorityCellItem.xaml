@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PlanStreet.Cells.PriorityCellItem">
+    <ViewCell.View>
+      <StackLayout
+            Spacing="10"
+            Orientation="Horizontal"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <Image
+                VerticalOptions="Center"
+                WidthRequest="25"
+                HeightRequest="25"
+                >
+                <Image.Triggers>
+                    <DataTrigger
+                        TargetType="Image"
+                        Binding="{Binding IsSelected}"
+                        Value="true">
+                        <Setter
+                            Property="Source"
+                            Value="checked_green.png" />
+                    </DataTrigger>
+                    <DataTrigger
+                        TargetType="Image"
+                        Binding="{Binding IsSelected}"
+                        Value="false">
+                        <Setter
+                            Property="Source"
+                            Value="unchecked_green.png" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+            <Frame
+                Padding="0"
+                CornerRadius="4"
+                OutlineColor="Transparent"
+                HeightRequest="30"
+                HasShadow="false"
+                VerticalOptions="Center"
+                BackgroundColor="{Binding PriorityColor}">
+                <Label
+                    Text="{Binding PriorityName}"
+                    WidthRequest="120"
+                    HorizontalTextAlignment="Center"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </Frame>
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>

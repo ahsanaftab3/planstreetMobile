@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PlanStreet.Cells.ToDoCellItem">
+    <ViewCell.View>
+        <Frame
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            CornerRadius="4"
+            OutlineColor="Transparent"
+            Margin="10,8,10,6"
+            BackgroundColor="White"
+            HasShadow="false"
+            Padding="10,5,10,5">
+            <StackLayout
+                Orientation="Horizontal">
+                <Label
+                    Text="ToDoTask 1"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="Center" />
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="3"
+                    HorizontalOptions="End"
+                    Aspect="AspectFit"
+                    WidthRequest="20"
+                    Source="ic_menu.png" />
+            </StackLayout>
+        </Frame>
+    </ViewCell.View>
+</ViewCell>
